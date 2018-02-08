@@ -1,0 +1,26 @@
+{
+  "name": "hapi16v",
+  "version": "1.0.0",
+  "description": "hapi 16 version",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParshantArora/hapi16v.git"
+  },
+  "keywords": [
+    "hapi16",
+    "node"
+  ],
+  "author": "Parshant Nagpal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ParshantArora/hapi16v/issues"
+  },
+  "homepage": "https://github.com/ParshantArora/hapi16v#readme",
+  "dependencies": {
+    "hapi": "^16.0.1"
+  }
+}
