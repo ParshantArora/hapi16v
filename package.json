@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/ParshantArora/hapi16v#readme",
   "dependencies": {
+    "good": "7.3.0",
+    "good-console": "^7.0.1",
+    "good-squeeze": "^5.0.2",
     "hapi": "^16.0.1",
     "inert": "^4.2.1"
   }
