@@ -7,7 +7,7 @@ exports.register = function(server,option,next){
       method : 'GET',
       path : "/apipath",
       handler : function(request,reply){
-      	  reply("api works",option.message)
+      	  reply("api works")
       }
 	});
 	next();

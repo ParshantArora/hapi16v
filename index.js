@@ -43,11 +43,32 @@ server.route({
 })
 });
 
-server.register([require('./plugin/plugin'),require('./plugin/pluginWithSpecificApi')],(err) => {
+server.register([{
+	register : require('./plugin/plugin'),
+    options : {
+    	message : "mesagesss are there"
+    }
+},	
+	require('./plugin/pluginWithSpecificApi')
+	],{
+ routes : {
+ 	prefix :'/plugins'
+ }
+	},
+
+	(err) => {
    if(err){
    	  console.log('Failed to load ',err)
    }
 
+});
+server.register({
+	register : require("./plugin/yourPlugin")},{
+       select: ['a','c']
+	}, (err) =>{
+      if(err){
+      	throw err;
+      }
 });
 /*
 server.register(require('./plugin/pluginWithSpecificApi'),(err) => {

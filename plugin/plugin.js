@@ -5,7 +5,7 @@ exports.register =  function(server,options,next){
          method : 'GET',
          path: '/ahlechak',
          handler : function(request,reply){
-         	reply('ah le chak ')
+         	reply(options.message)
          }
 
 	  });
