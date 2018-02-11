@@ -3,6 +3,8 @@ const Hapi = require("Hapi");
 const Good = require("good");
 const server = new Hapi.Server();
 server.connection({port : 3000,host : "localhost"});
+server.connection({ port: 80, labels: ['api'] , host:"localhost"});
+server.connection({ port: 8080, labels: ['a', 'c'] });
 server.route({
 	method : "GET",
 	path : '/',
@@ -41,6 +43,19 @@ server.route({
 })
 });
 
+server.register([require('./plugin/plugin'),require('./plugin/pluginWithSpecificApi')],(err) => {
+   if(err){
+   	  console.log('Failed to load ',err)
+   }
+
+});
+/*
+server.register(require('./plugin/pluginWithSpecificApi'),(err) => {
+	if(err){
+		console.log("Failed to load ", err)
+	}
+});
+*/
 server.register({
 	register: Good,
 	options :  {
@@ -67,7 +82,10 @@ server.register({
     if(err){
     	throw err;
     }
-    server.log('info','Server running at : ' + server.info.uri);
+    server.connections.map((data,index)=>{
+    	 server.log('info','Server running at : ${index} ' + server.connections[index].info.uri);
+    })
+   
  });
 });
 
