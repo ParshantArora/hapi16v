@@ -27,6 +27,10 @@
     "good-squeeze": "^5.0.2",
     "hapi": "^16.0.1",
     "hapi-auth-basic": "^4.2.0",
-    "inert": "^4.2.1"
+    "inert": "^4.2.1",
+    "mongoose": "^5.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
   }
 }

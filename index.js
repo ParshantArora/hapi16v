@@ -2,6 +2,7 @@
 const Hapi = require("Hapi");
 const Good = require("good");
 const server = new Hapi.Server();
+const db = require('./database').db;
 server.connection({port : 3000,host : "localhost"});
 server.connection({ port: 80, labels: ['api'] , host:"localhost"});
 server.connection({ port: 8080, labels: ['a', 'c'] });
