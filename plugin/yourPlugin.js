@@ -5,7 +5,7 @@ exports.register = function(server,option,next){
         	method : 'GET',
         	path : 	'/yourplugin',
         	handler : function (request,reply){
-        		reply("your plugin")
+        		reply({message : "your plugin",Name : "parshant"}).code(201)
         	}
         })
 		next();

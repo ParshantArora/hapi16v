@@ -5,6 +5,7 @@ const server = new Hapi.Server();
 server.connection({port : 3000,host : "localhost"});
 server.connection({ port: 80, labels: ['api'] , host:"localhost"});
 server.connection({ port: 8080, labels: ['a', 'c'] });
+server.connection({ port: 4000,labels : ['auth'] , host : "localhost"})
 server.route({
 	method : "GET",
 	path : '/',
@@ -69,6 +70,18 @@ server.register({
       if(err){
       	throw err;
       }
+});
+
+/* register the user 
+*/
+
+server.register({
+	register : require("./auth/register")},{
+     select : ['auth']
+	}, (err) => {
+      if(err){
+          throw error;
+       }
 });
 /*
 server.register(require('./plugin/pluginWithSpecificApi'),(err) => {
