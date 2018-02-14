@@ -1,5 +1,5 @@
 'use strict'
-const Hapi = require("Hapi");
+const Hapi	 = require("Hapi");
 const Good = require("good");
 const server = new Hapi.Server();
 const db = require('./database').db;
@@ -78,6 +78,20 @@ server.register({
 
 server.register({
 	register : require("./auth/register")},{
+     select : ['auth']
+	}, (err) => {
+      if(err){
+          throw error;
+       }
+});
+/*
+
+
+/* register the user 
+*/
+
+server.register({
+	register : require("./auth/login")},{
      select : ['auth']
 	}, (err) => {
       if(err){

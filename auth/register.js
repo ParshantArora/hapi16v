@@ -7,34 +7,26 @@ exports.register = function(server,option,next){
 	     method : 'POST',
          path : '/register',
          handler :  function(request,reply){
-         	  //let payloads = request.payload;
-         	 // let payl = {};
-             if(request.payload.hasOwnProperty("password")){
-            let {password} = request.payload;
-            
-             bcrypt.hash(password,saltRounds, function(err,hash){
-             	request.payload = {...request.payload,password : hash}
-             	//    console.log(payl)
-            const userdata = new User(request.payload);
-             
-           
-           //    console.log(userdata)
-
+             if(request.payload.hasOwnProperty("password") && request.payload.hasOwnProperty("email") && request.payload.hasOwnProperty("name")){
+            User.find({email : request.payload.email}).then((data)=>{
+            	if(data.length == 0){
+				  let {password} = request.payload;
+                  bcrypt.hash(password,saltRounds, function(err,hash){
+                	request.payload = {...request.payload,password : hash}
+                  const userdata = new User(request.payload);
               userdata.save().then((data)=>{
               	console.log("data saved")
               	reply(data)
               })
-             //payloads = {...payloads,password : hash}
-           //  return{...request.payload,password : hash}
-               //request.payload = {...request.payload,password : hash}
-               	//console.log("hash",hash,payl )
             });
-         
+	}
+            	else{
+            		reply("user with "+ request.payload.email+ " is already registered")
+            	}
+            })   
           }else{
           	reply("Please fill the full details")
-          }
-             
-      
+          }      
                     }
  
 	});
