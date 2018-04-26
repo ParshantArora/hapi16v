@@ -4,7 +4,7 @@ const Good = require("good");
 const server = new Hapi.Server();
 const db = require('./database').db;
 server.connection({port : 3000,host : "localhost"});
-server.connection({ port: 80, labels: ['api'] , host:"localhost"});
+server.connection({ port: 8080, labels: ['api'] , host:"localhost"});
 server.connection({ port: 8080, labels: ['a', 'c'] });
 server.connection({ port: 4000,labels : ['auth'] , host : "localhost"})
 server.route({
@@ -81,13 +81,14 @@ server.register({
      select : ['auth']
 	}, (err) => {
       if(err){
-          throw error;
+          throw err;
        }
 });
 /*
 
 
-/* register the user 
+/* 
+login user 
 */
 
 server.register({
@@ -95,9 +96,23 @@ server.register({
      select : ['auth']
 	}, (err) => {
       if(err){
-          throw error;
+          throw err;
        }
 });
+
+/* 
+logout user
+*/
+server.register({
+	register : require("./auth/logout")},{
+		select : ['auth']
+	},(err) => {
+		if(err){
+			throw err;
+		}
+});
+
+
 /*
 server.register(require('./plugin/pluginWithSpecificApi'),(err) => {
 	if(err){
