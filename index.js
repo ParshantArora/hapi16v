@@ -77,7 +77,7 @@ server.register({
 */
 
 server.register({
-	register : require("./auth/register")},{
+	register : require("./api/v1/auth/register")},{
      select : ['auth']
 	}, (err) => {
       if(err){
@@ -92,7 +92,7 @@ login user
 */
 
 server.register({
-	register : require("./auth/login")},{
+	register : require("./api/v1/auth/login")},{
      select : ['auth']
 	}, (err) => {
       if(err){
@@ -104,13 +104,27 @@ server.register({
 logout user
 */
 server.register({
-	register : require("./auth/logout")},{
+	register : require("./api/v1/auth/logout")},{
 		select : ['auth']
 	},(err) => {
 		if(err){
 			throw err;
 		}
 });
+
+
+/* 
+logout user
+*/
+server.register({
+	register : require("./api/v1/posts/addPosts")},{
+		select : ['auth']
+	},(err) => {
+		if(err){
+			throw err;
+		}
+});
+
 
 
 /*
