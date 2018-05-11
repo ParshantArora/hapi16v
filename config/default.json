@@ -1,0 +1,6 @@
+{
+	"Jwt" : {
+		"key" : "DemoHapiNode",
+		"algorithmUsed" : "HS512"
+	}
+}

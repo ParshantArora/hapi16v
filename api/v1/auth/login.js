@@ -10,7 +10,7 @@ Description : 'login the user and provide user the auth token'
 'use strict';
 var bcrypt =require('bcrypt');
 var jwt = require('jsonwebtoken');
-const User = require('../models/users');
+const User = require('../../../models/users');
 const expiresInTime = 60 * 60;
 const algorithmUsed = 'HS512';
 const keydata = 'DemoHapiNode';
@@ -21,7 +21,7 @@ exports.register = function(server,options,next){
 		path : '/login',
 		handler: function(request,reply){
 
-			if(request.payload.hasOwnProperty("password") && request.payload.hasOwnProperty("email")){ // check email and password field exists
+			if(request.payload["password"] && request.payload["email"]){ // check email and password field exists
                 /*
                 check if the same email id exists 
                 */
