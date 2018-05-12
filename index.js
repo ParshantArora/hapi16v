@@ -126,68 +126,35 @@ server.register({
       }
 });
 
-/* register the user 
+
+
+
+
+server.register(
+[
+/* 
+register the user 
 */
-
-server.register({
-	register : require("./api/v1/auth/register")},{
-     select : ['auth']
-	}, (err) => {
-      if(err){
-          throw err;
-       }
-});
-/*
-
-
+{
+	register : require("./api/v1/auth/register")},
 /* 
 login user 
 */
-
-server.register({
-	register : require("./api/v1/auth/login")},{
-     select : ['auth']
-	}, (err) => {
-      if(err){
-          throw err;
-       }
-});
+{
+	register : require("./api/v1/auth/login")},
+/* 
+logout user
+*/
+{
+	register : require("./api/v1/auth/logout")},
 
 /* 
 logout user
 */
-server.register({
-	register : require("./api/v1/auth/logout")},{
-		select : ['auth']
-	},(err) => {
-		if(err){
-			throw err;
-		}
-});
+{
+	register : require("./api/v1/posts/addPosts")},
 
-
-/* 
-logout user
-*/
-server.register({
-	register : require("./api/v1/posts/addPosts")},{
-		select : ['auth']
-	},(err) => {
-		if(err){
-			throw err;
-		}
-});
-
-
-
-/*
-server.register(require('./plugin/pluginWithSpecificApi'),(err) => {
-	if(err){
-		console.log("Failed to load ", err)
-	}
-});
-*/
-server.register({
+{
 	register: Good,
 	options :  {
 		 reporters: {
@@ -204,7 +171,12 @@ server.register({
 		 	    },'stdout']
 		 }
 	}
-},(err) =>{
+}],{
+		select : ['auth'],
+		routes : {
+ 	prefix :'/api/v1'
+ }
+	},(err) =>{
  
  if(err){
  	throw err;
@@ -219,10 +191,3 @@ server.register({
    
  });
 });
-
-/*server.start((err)=>{
-	if(err){
-	throw err;
-	}
-	console.log('Server is running at : ${server.info.uri}')
-});*/

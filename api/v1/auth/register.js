@@ -7,19 +7,18 @@ Description : 'Register the new user by adding email ,password and name'
 
 'use strict'
 var bcrypt = require('bcrypt');
-const User = require('../../../models/users')
+const User = require('../../../models/users');
 const saltRounds = 10;
 exports.register = function(server,option,next){
 	server.route({
 	     method : 'POST',
          path : '/register',
-             config: {
+         config: {
         auth: false,
          handler :  function(request,reply){
              /*
               Check if the payload contains password ,email and name 
               */
-              console.log("requsetttt",request.auth)
             if(request.payload["password"] && request.payload["email"] && request.payload["name"]){
                   /*
                   Check if the same email id is registered or not 

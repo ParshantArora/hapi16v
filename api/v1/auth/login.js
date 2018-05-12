@@ -20,11 +20,12 @@ exports.register = function(server,options,next){
 		method : 'POST',
 		path : '/login',
 		handler: function(request,reply){
-
+console.log(request)
 			if(request.payload["password"] && request.payload["email"]){ // check email and password field exists
                 /*
                 check if the same email id exists 
                 */
+                console.log(request.payload.email)
                 User.find({email : request.payload.email}).then((data)=>{ 
                if(data.length > 0){
                      /*
