@@ -1,6 +1,8 @@
 {
 	"Jwt" : {
 		"key" : "DemoHapiNode",
-		"algorithmUsed" : "HS512"
+		"algorithmUsed" : "HS512",
+        "expiresInTime" :  3600,
+        "saltRounds" : 10
 	}
 }
